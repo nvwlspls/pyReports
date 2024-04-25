@@ -2,11 +2,21 @@
 <html>
 <head>
     <title>My Report</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
 </head>
 <body>
 
     <h1>Apples</h1>
     <h1>{{ title }}</h1>
     <p>{{ content }}</p>
+<div class='container'>
+
+    {% for record in month %}
+    <div class='row'>
+       {{ record["category"] }},
+       {{ record["amount"] }}
+    </div>
+    {% endfor%}
+</div>
 </body>
 </html>
