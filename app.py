@@ -17,11 +17,18 @@ def render_report():
     # keep only march 2024 transactions for now
     march2024 = df[(df['date'].dt.month == 4) & (df['date'].dt.year == 2024)]
 
-    summary_df = df.groupby('category')['amount'].agg(['sum', 'mean', 'count']).reset_index()
-    print(summary_df.head())
+    group_summary_df = march2024.groupby('parent category')['amount'].agg(['sum', 'mean', 'count']).reset_index()
+    category_summary_df = march2024.groupby('category')['amount'].agg(['sum', 'mean','count']).reset_index()
+    parent_catergory_links = {}
+
+    for group in group_summary_df['parent category']:
+            parent_catergory_links[group] = march2024.loc[march2024['parent category'] == group, ['category']]['category'].unique()
+
     context = {
         "title": "This is the title",
         "content": "This is the content",
-        "month": march2024.to_dict('records')
+        "group_summary": group_summary_df.to_dict('records'),
+        "category_summary": category_summary_df.to_dict('records'),
+        "parent_category_links": parent_catergory_links
     }
     return render_template('report.html', **context)
