@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Report</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    />
+    <style>
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:nth-child(odd) {
+        background-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
+    <div class="container">
+        {% include 'category.html'  %}
+    </div>
+  </body>
+</html>

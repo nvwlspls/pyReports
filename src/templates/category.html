@@ -1,0 +1,21 @@
+<table id="categories">
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Monthy Total</th>
+      <th>Number of Transactions</th>
+      <th>Average Transaction</th>
+    </tr>
+  </thead>
+  <tbody id="groups">
+    {% for group in group_summary %}
+    <tr>
+      <td>{{group['parent category']}}</td>
+      <td>{{group['sum']}}</td>
+      <td>{{group['count']}}</td>
+      <td>{{group['mean']}}</td>
+    </tr>
+        {% include 'nested_categories.html' %}
+    {% endfor %}
+  </tbody>
+</table>

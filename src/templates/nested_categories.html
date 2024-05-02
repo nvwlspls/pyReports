@@ -1,0 +1,28 @@
+{% if parent_category_links[group['parent category']]|length > 1 %}
+<tr id="parent">
+  <td colspan="2"></td>
+  <td colspan="2">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Monthly Total</th>
+          <th>Number of Transactions</th>
+          <th>Average Transaction</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for x in parent_category_links[group['parent category']] %} {% for
+        category in category_summary %} {% if x == category['category'] %}
+        <tr>
+          <td id="cat">{{category['category']}}</td>
+          <td>{{category['sum']}}</td>
+          <td>{{category['count']}}</td>
+          <td>{{category['mean']}}</td>
+        </tr>
+        {% endif %} {% endfor %} {% endfor %}
+      </tbody>
+    </table>
+  </td>
+</tr>
+{% endif %}
